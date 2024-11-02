@@ -1,18 +1,26 @@
 import { useLoaderData, useParams } from "react-router-dom";
+import { setLocalStoreReadBooks, setLocalStoreWishBooks } from "../../Utility/utility";
 
 const BookDetails = () => {
     const data = useLoaderData()
-    const { bookId } = useParams()
-    const id = parseInt(bookId)
+    const { bookId: bookIdParams } = useParams()
+    const id = parseInt(bookIdParams)
     const
         {
+            bookId,
             bookName, author, image, tags,
             review, rating, totalPages,
             category, publisher, yearOfPublishing
         }
             = data.find(book => book.bookId === id)
 
-    console.log(image)
+    const handleReadBooks = (id) => {
+        setLocalStoreReadBooks(id)
+    }
+
+    const handleWishlistBooks = (id) => {
+        setLocalStoreWishBooks(id)
+    }
     return (
         <div className="w-11/12 mx-auto">
             <div className="flex justify-around  mt-10">
@@ -37,8 +45,12 @@ const BookDetails = () => {
                     <p className="my-1">Year Of Publishing      : <strong className="font-semibold">{yearOfPublishing}</strong></p>
                     <p className="my-1">Rating                  : <strong className="font-semibold">{rating}</strong></p>
                     <div className="mt-5">
-                        <button className="border-2 border-green-700 py-2 px-8 rounded-sm font-bold text-green-700 mr-5">Read</button>
-                        <button className="bg-green-700 border-2 border-green-700 py-2 px-8 rounded-sm font-bold text-white ">Wishlist</button>
+                        <button
+                            onClick={() => handleReadBooks(bookId)}
+                            className="border-2 border-green-700 py-2 px-8 rounded-sm font-bold text-green-700 mr-5">Read</button>
+                        <button
+                            onClick={() => handleWishlistBooks(bookId)}
+                            className="bg-green-700 border-2 border-green-700 py-2 px-8 rounded-sm font-bold text-white ">Wishlist</button>
                     </div>
                 </div>
             </div>

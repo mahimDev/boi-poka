@@ -6,8 +6,8 @@ const Book = ({ book }) => {
     return (
         <div>
             <Link to={`/book/${bookId}`}>
-                <div className="flex justify-center p-4 mt-5">
-                    <div className="max-w-md  w-full bg-white border border-gray-200 rounded-sm shadow-lg overflow-hidden transform transition-transform duration-500 hover:scale-105 will-change-transform">
+                <div className="flex justify-center p-4 mt-10  ">
+                    <div className="max-w-md  w-full  rounded-sm shadow-lg hover:shadow-2xl overflow-hidden transform transition-transform duration-500 hover:scale-105 will-change-transform">
                         <img
                             src={image}
                             alt="Card Image"
